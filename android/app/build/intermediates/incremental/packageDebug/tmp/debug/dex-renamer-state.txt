@@ -1,0 +1,4 @@
+#Wed Feb 05 19:42:56 IST 2020
+base.0=/Users/sunil/Desktop/Image_Fillter/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
