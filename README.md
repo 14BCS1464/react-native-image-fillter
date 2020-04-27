@@ -10,19 +10,6 @@ Follow instructions  from App.js
 
 
 
-import React, {Component} from 'react';
-import {Button, FlatList, Image, NativeModules, TouchableOpacity, View,Text} from 'react-native';
-import ImagePicker from 'react-native-image-crop-picker';
-import imageFillter from './test'
-export default class App extends Component {
-    constructor() {
-        super()
-        this.state = {
-            imageSoure: "",
-            imageArraySoure: []
-
-        }
-    }
 
     imageFillter = async (i) => {
         let result = await new Promise((resolve, reject) => {
@@ -37,19 +24,7 @@ export default class App extends Component {
         return (result)
     }
 
-    onPress = () => {
-        ImagePicker.openPicker({
-            width: 300,
-            height: 400,
-            cropping: true
-        }).then(image => {
-            this.setState({
-                imageSoure: Platform.OS === 'ios' ? "file:///" + image.path : image.path
-            }, () => {
 
-            })
-        })
-    }
 
     FilterImage = async () => {
         if (!this.state.imageSoure) {
@@ -69,35 +44,4 @@ export default class App extends Component {
         }
     }
 
-    onImagePress = (FillterImage) => {
-        this.setState({
-            imageSoure: FillterImage
-        })
-    }
-
-    render() {
-        return (
-            <View style={{flex: 1, alignItems: "center"}}>
-                <Image source={{uri: this.state.imageSoure}} style={{height: 300, width: 300}}/>
-                <Button title={"pressMe"} onPress={(() => this.onPress())}/>
-
-                <Button title={"FilterImage"} onPress={(() => this.FilterImage())}/>
-
-                <FlatList
-                    horizontal={true}
-                    data={this.state.imageArraySoure}
-                    renderItem={({item,index}) => (
-                        <TouchableOpacity style={{alignItems:'center'}} onPress={() => this.onImagePress(item.FillterImage)
-                        }>
-                            <Image source={{uri: item.FillterImage}} style={{height: 100, width: 100}}
-                                   resizeMode={"contain"}/>
-
-                                   <Text style={{fontSize: 16, color:'red',}} numberOfLines={1}> {index}
-                        </Text>
-                        </TouchableOpacity>
-                    )}
-                />
-            </View>
-        );
-    }
-}
+   
